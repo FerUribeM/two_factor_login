@@ -25,8 +25,11 @@ class _QR2AuthenticatorFactorState extends State<QR2AuthenticatorFactor> {
   @override
   void initState() {
     super.initState();
-    authenticator = TwoFactorAuthenticator();
-    widget.onKeySecret(authenticator.keySecret);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      authenticator = TwoFactorAuthenticator();
+      widget.onKeySecret(authenticator.keySecret);
+    });
+
   }
 
   @override
